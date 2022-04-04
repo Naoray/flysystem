@@ -199,7 +199,7 @@ class SftpAdapter implements FilesystemAdapter
     {
         $location = $this->prefixer->prefixPath($path);
         $connection = $this->connectionProvider->provideConnection();
-        $connection->rmdir(rtrim($location, '/') . '/');
+        $connection->delete(rtrim($location, '/') . '/');
     }
 
     public function createDirectory(string $path, Config $config): void
