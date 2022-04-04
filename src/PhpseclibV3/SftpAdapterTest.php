@@ -214,6 +214,19 @@ class SftpAdapterTest extends FilesystemAdapterTestCase
         $this->assertCount(0, iterator_to_array($contents));
     }
 
+    /**
+     * @test
+     */
+    public function deleting_a_directory(): void
+    {
+        $adapter = $this->adapter();
+        $adapter->createDirectory('foo', new Config());
+
+        $adapter->deleteDirectory('foo', new Config());
+
+        $this->assertFalse($adapter->directoryExists('foo'));
+    }
+
     private static function connectionProvider(): ConnectionProvider
     {
         if ( ! static::$connectionProvider instanceof ConnectionProvider) {
